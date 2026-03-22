@@ -1,30 +1,20 @@
-% rebase('layout.tpl', title='Home Page', year=year)
+% rebase('layout.tpl', title='Главная', year=year)
 
-<div class="jumbotron">
-    <img src="static\logo_nav.png">
-    <p></p>
-    <p class="lead">Bottle is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://bottlepy.org/docs/dev/index.html" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+<div class="jumbotron" style="background-color: #f9f1f1; border-radius: 20px; margin-top: 20px;">
+    <h1>Свежесть в каждом букете</h1>
+    <p class="lead">Выберите готовое решение от наших флористов или соберите свой уникальный букет.</p>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Bottle gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://bottlepy.org/docs/dev/index.html">Learn more &raquo;</a></p>
+<div class="catalog-grid">
+    % for b in bouquets:
+    <div class="product-card">
+        <img class="product-image" src="/static/images/{{ b['image'] }}" alt="{{ b['name'] }}">
+        <div class="product-info">
+            <h3>{{ b['name'] }}</h3>
+            <p>{{ b['desc'] }}</p>
+            <p><strong>{{ b['price'] }} ₽</strong></p>
+            <button class="btn-buy" onclick="alert('Добавлено!')">В корзину</button>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
-    </div>
+    % end
 </div>
