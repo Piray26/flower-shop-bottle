@@ -2,7 +2,7 @@
 Routes and views for the bottle application.
 """
 
-from bottle import route, view
+from bottle import route, view, template
 from datetime import datetime
 
 BOUQUETS_DB = [
@@ -40,14 +40,18 @@ def home():
     )
 
 @route('/contact')
-@view('contact')
 def contact():
-    """Renders the contact page."""
-    return dict(
-        title='Contact',
-        message='Your contact page.',
-        year=datetime.now().year
-    )
+    return template('contact', success=False)
+
+@route('/contact', method='POST')
+def contact_post():
+    name = request.forms.get('name')
+    email = request.forms.get('email')
+    message = request.forms.get('message')
+
+    print(name, email, message)
+
+    return template('contact', success=True)
 
 @route('/about')
 @view('about')
@@ -58,3 +62,5 @@ def about():
         message='Your application description page.',
         year=datetime.now().year
     )
+
+
