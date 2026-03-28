@@ -50,7 +50,13 @@
     <Content Include="static\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="static\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="static\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="static\images\123.png" />
+    <Content Include="static\images\bouquet.png" />
+    <Content Include="static\images\drop.png" />
+    <Content Include="static\images\flower.png" />
+    <Content Include="static\images\heart.png" />
     <Content Include="static\images\logo_nav.png" />
+    <Content Include="static\images\petals.png" />
     <Content Include="static\scripts\bootstrap.js" />
     <Content Include="static\scripts\bootstrap.min.js" />
     <Content Include="static\scripts\jquery-1.10.2.intellisense.js" />
