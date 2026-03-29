@@ -63,4 +63,26 @@ def about():
         year=datetime.now().year
     )
 
+@route('/cart')
+def cart():
+    # заглушка
+    cart_items = [
+        {
+            "name": "Розовый букет",
+            "price": 2500,
+            "qty": 1,
+            "image": "/static/images/bouquet.jpg"
+        },
+        {
+            "name": "Белые тюльпаны",
+            "price": 1500,
+            "qty": 2,
+            "image": "/static/images/bouquet.jpg"
+        }
+    ]
+
+    total = sum(item["price"] * item["qty"] for item in cart_items)
+
+    return template('cart', items=cart_items, total=total)
+
 
