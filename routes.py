@@ -38,6 +38,12 @@ def home():
         year=datetime.now().year,
         bouquets=BOUQUETS_DB
     )
+@route('/constructor')
+@view('constructor')
+def constructor():
+    return dict(
+        year=datetime.now().year
+    )
 
 @route('/contact')
 def contact():
