@@ -43,8 +43,17 @@
   <ItemGroup>
     <Content Include=".txt" />
     <Content Include="requirements.txt" />
+    <Content Include="static\content\about.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="static\content\bootstrap.css" />
     <Content Include="static\content\bootstrap.min.css" />
+    <Content Include="static\content\cart.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="static\content\contact.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="static\content\site.css" />
     <Content Include="static\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="static\fonts\glyphicons-halflings-regular.svg" />
