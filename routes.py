@@ -47,7 +47,7 @@ def constructor():
 
 @route('/contact')
 def contact():
-    return template('contact', success=False)
+    return template('contact', success=False, year=datetime.now().year)
 
 @route('/contact', method='POST')
 def contact_post():
@@ -62,10 +62,7 @@ def contact_post():
 @route('/about')
 @view('about')
 def about():
-    """Renders the about page."""
     return dict(
-        title='About',
-        message='Your application description page.',
         year=datetime.now().year
     )
 
@@ -89,6 +86,6 @@ def cart():
 
     total = sum(item["price"] * item["qty"] for item in cart_items)
 
-    return template('cart', items=cart_items, total=total)
+    return template('cart', items=cart_items, total=total, year=datetime.now().year)
 
 
