@@ -5,8 +5,8 @@
 <div class="container">
 
 <!-- HERO -->
-<div class="hero">
-    <div class="hero-text">
+<div class="about-hero">
+    <div class="about-hero-text">
         <div class="eyebrow">FlowerMaster</div>
         <h1>Цветы, которые создают эмоции</h1>
         <p>
@@ -14,7 +14,7 @@
         </p>
     </div>
 
-    <div class="hero-img">
+    <div class="about-hero-img">
         <img src="/static/images/bouquet.png" alt="букет">
     </div>
 </div>
@@ -25,19 +25,19 @@
 
     <div class="grid">
 
-        <div class="card">
+        <div class="card-about">
             <img src="/static/images/heart.png" class="card-icon">
             <h3>С душой</h3>
             <p>Каждый букет создаётся с вниманием к деталям.</p>
         </div>
 
-        <div class="card">
+        <div class="card-about">
             <img src="/static/images/drop.png" class="card-icon">
             <h3>Свежесть</h3>
             <p>Мы используем только свежие цветы каждый день.</p>
         </div>
 
-        <div class="card">
+        <div class="card-about">
             <img src="/static/images/flower.png" class="card-icon">
             <h3>Стиль</h3>
             <p>Современный дизайн, который выглядит эстетично.</p>

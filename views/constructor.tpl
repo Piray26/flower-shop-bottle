@@ -1,6 +1,6 @@
 % rebase('layout.tpl', title='Конструктор', year=year)
 
-<div class="jumbotron" style="background-color: #f9f1f1; border-radius: 20px; margin-top: 20px; padding: 30px;">
+<div class="hero">
     <h2>Собери свой идеальный букет</h2>
     <p class="lead">Кликай по цветам, чтобы добавить их в букет. Размер пересчитается автоматически!</p>
 </div>

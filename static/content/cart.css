@@ -14,49 +14,6 @@
     --space-xl: 64px;
 }
 
-/* ‘ŒÕ */
-.cart-page::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: url('/static/images/petals.png') center/cover no-repeat;
-    opacity: 0.16;
-    z-index: -1;
-}
-
-/* Œ¡Ÿ≈≈ */
-.cart-page {
-    padding: 40px 20px;
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text-primary);
-}
-
-/* HEADER */
-.cart-header {
-    text-align: center;
-    margin-bottom: var(--space-xl);
-}
-
-    .cart-header .eyebrow {
-        text-transform: uppercase;
-        font-size: 12px;
-        letter-spacing: 2px;
-        color: var(--text-muted);
-        margin-bottom: 10px;
-    }
-
-    .cart-header h1 {
-        font-size: 52px;
-        font-weight: 700;
-        margin-bottom: 12px;
-    }
-
-    .cart-header p {
-        font-size: 18px;
-        color: var(--text-secondary);
-        line-height: 1.6;
-    }
-
 .cart-line {
     width: 60px;
     height: 3px;
@@ -225,40 +182,6 @@
     margin-top: 24px;
 }
 
-/* BUTTON */
-.btn-main {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    margin-top: var(--space-md);
-    padding: 18px 36px;
-    border-radius: 28px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    font-size: 16px;
-    transition: 0.3s cubic-bezier(0.4,0,0.2,1);
-}
-
-    .btn-main span {
-        transition: 0.3s;
-    }
-
-    .btn-main:hover {
-        transform: translateY(-3px) scale(1.03);
-        box-shadow: 0 12px 40px rgba(143,188,143,0.35);
-    }
-
-        .btn-main:hover span {
-            transform: translateX(4px);
-        }
-
-    .btn-main:focus {
-        outline: 3px solid rgba(143,188,143,0.6);
-    }
-
 /* ANIMATION */
 @keyframes fadeInUp {
     from {
@@ -271,6 +194,31 @@
         transform: translateY(0);
     }
 }
+
+.cart-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+    .cart-header .eyebrow {
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 2px;
+        color: var(--text-muted);
+        margin-bottom: 10px;
+    }
+
+    .cart-header h1 {
+        font-size: 52px;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .cart-header p {
+        font-size: 18px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
 
 /* MOBILE */
 @media (max-width: 768px) {

@@ -1,8 +1,8 @@
 % rebase('layout.tpl', title='Главная', year=year)
 
-<div class="jumbotron" style="background-color: #f9f1f1; border-radius: 20px; margin-top: 20px;">
+<div class="hero">
     <h1>Свежесть в каждом букете</h1>
-    <p class="lead">Выберите готовое решение от наших флористов или соберите свой уникальный букет.</p>
+    <p>Выберите готовое решение от наших флористов или соберите свой уникальный букет.</p>
 </div>
 
 <div class="catalog-grid">
@@ -13,7 +13,7 @@
             <h3>{{ b['name'] }}</h3>
             <p>{{ b['desc'] }}</p>
             <p><strong>{{ b['price'] }} ₽</strong></p>
-            <button class="btn-buy" onclick="alert('Добавлено!')">В корзину</button>
+            <button class="btn" onclick="alert('Добавлено!')">В корзину</button>
         </div>
     </div>
     % end

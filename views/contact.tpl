@@ -7,7 +7,7 @@
 
 <body>
 
-<div class="container contact-page">
+<div class="contact-page">
 
 <!-- HEADER -->
 <div class="contact-header">
@@ -76,7 +76,7 @@
             <input type="email" name="email" placeholder="example@mail.com" required>
             <textarea name="message" rows="4" placeholder="Ваше сообщение..." required></textarea>
 
-            <button type="submit" class="btn-main">
+            <button type="submit" class="btn-cart-contact">
                 Отправить <span>→</span>
             </button>
 

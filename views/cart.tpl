@@ -7,10 +7,10 @@
 
 <body>
 
-<div class="container cart-page">
+<div class="body">
 
     <!-- HEADER -->
-    <div class="page-header">
+    <div class="cart-header">
         <div class="eyebrow">FLOWERMASTER</div>
         <h1>Ваша корзина</h1>
         <p>Проверьте выбранные букеты перед оформлением заказа</p>
@@ -91,7 +91,7 @@
                 5 800 ₽
             </div>
 
-            <button class="btn-main">
+            <button class="btn-cart-contact">
                 Оформить заказ <span>→</span>
             </button>
 

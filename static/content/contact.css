@@ -13,16 +13,6 @@
     --space-xl: 64px;
 }
 
-/* ‘ŒÕ */
-.contact-page::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: url('/static/images/petals.png') center/cover no-repeat;
-    opacity: 0.12;
-    z-index: -1;
-}
-
 /* Œ¡Ÿ≈≈ */
 .contact-page {
     font-family: 'Montserrat', sans-serif;
@@ -175,34 +165,7 @@
         transform: translateY(-1px);
     }
 
-/* BUTTON */
-.btn-main {
-    width: 100%;
-    padding: 18px;
-    border-radius: 28px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    transition: 0.3s cubic-bezier(0.4,0,0.2,1);
-}
 
-    .btn-main span {
-        transition: 0.3s;
-    }
-
-    .btn-main:hover {
-        transform: translateY(-3px) scale(1.03);
-        box-shadow: 0 12px 40px rgba(143,188,143,0.35);
-    }
-
-        .btn-main:hover span {
-            transform: translateX(4px);
-        }
 
 /* SUCCESS */
 .alert-success-custom {
