@@ -13,24 +13,14 @@
     --space-xl: 64px;
 }
 
-/* наыее */
 .contact-page {
     font-family: 'Montserrat', sans-serif;
     padding: 40px 20px;
 }
 
-/* HEADER */
 .contact-header {
     text-align: center;
     margin-bottom: var(--space-xl);
-}
-
-.eyebrow {
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 2px;
-    color: var(--text-muted);
-    margin-bottom: 10px;
 }
 
 .contact-header h1 {
@@ -53,14 +43,12 @@
     border-radius: 2px;
 }
 
-/* GRID */
 .contact-grid {
     display: flex;
     gap: 48px;
     flex-wrap: wrap;
 }
 
-/* CARD */
 .contact-card {
     flex: 1;
     min-width: 300px;
@@ -93,7 +81,6 @@
             opacity: 1;
         }
 
-    /* TITLE */
     .contact-card h3 {
         font-size: 22px;
         font-weight: 600;
@@ -102,7 +89,6 @@
         padding-bottom: 8px;
     }
 
-/* CONTACT ITEM */
 .contact-item {
     display: flex;
     gap: 16px;
@@ -134,7 +120,6 @@
     filter: brightness(0) invert(1);
 }
 
-/* TEXT */
 .contact-item strong {
     display: block;
     margin-bottom: 2px;
@@ -145,7 +130,6 @@
     color: var(--text-secondary);
 }
 
-/* FORM */
 .contact-form input,
 .contact-form textarea {
     width: 100%;
@@ -167,7 +151,6 @@
 
 
 
-/* SUCCESS */
 .alert-success-custom {
     background: #e6f4ea;
     color: #2e7d32;
@@ -177,7 +160,6 @@
     margin-bottom: 30px;
 }
 
-/* ANIMATION */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -194,13 +176,3 @@
     animation: fadeInUp 0.4s ease;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-    .contact-grid {
-        flex-direction: column;
-    }
-
-    .contact-header h1 {
-        font-size: 32px;
-    }
-}

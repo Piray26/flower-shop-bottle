@@ -6,7 +6,6 @@
     overflow-x: hidden;
 }
 
-    /* фон лепестков */
     body::before {
         content: "";
         position: fixed;
@@ -66,7 +65,6 @@
     text-align: center;
 }
 
-/*кнопка для каталога и о нас*/
 .btn {
     background: #8fbc8f;
     padding: 18px 36px;
@@ -83,7 +81,6 @@
         box-shadow: 0 10px 30px rgba(143,188,143,0.3);
     }
 
-/*кнопка для корзины и контактов*/
 .btn-cart-contact {
     display: inline-flex;
     align-items: center;
@@ -154,6 +151,18 @@
     max-width: 600px;
     margin: 0;
     text-align: left;
+}
+
+.page-header {
+    padding: 60px 0;
+    margin-bottom: 40px;
+}
+
+.page-header--center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
