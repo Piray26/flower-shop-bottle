@@ -1,4 +1,5 @@
-﻿body {
+﻿/* базовые стили страницы */
+body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     background: #fdfdfd;
@@ -6,6 +7,7 @@
     overflow-x: hidden;
 }
 
+/* полупрозрачный фоновый паттерн с лепестками */
     body::before {
         content: "";
         position: fixed;
@@ -16,6 +18,7 @@
         z-index: -1;
     }
 
+/* стили верхнего меню навигации */
 .navbar-inverse {
     background-color: #ffffff;
     border-color: #f0f0f0;
@@ -33,6 +36,7 @@
     color: #8fbc8f !important;
 }
 
+/* сетка каталога товаров на главной странице */
 .catalog-grid {
     display: flex;
     flex-wrap: wrap;
@@ -41,6 +45,7 @@
     margin-top: 30px;
 }
 
+/* карточка одного товара в каталоге */
 .product-card {
     background: white;
     border-radius: 15px;
@@ -65,6 +70,7 @@
     text-align: center;
 }
 
+/* стандартная зеленая кнопка */
 .btn {
     background: #8fbc8f;
     padding: 18px 36px;
@@ -81,6 +87,7 @@
         box-shadow: 0 10px 30px rgba(143,188,143,0.3);
     }
 
+/* альтернативная кнопка для форм контактов и корзины */
 .btn-cart-contact {
     display: inline-flex;
     align-items: center;
@@ -114,6 +121,7 @@
         outline: 3px solid rgba(143,188,143,0.6);
     }
 
+/* главный приветственный блок вверху страниц */
 .hero {
     display: flex;
     flex-direction: column;
@@ -130,6 +138,7 @@
     margin: 0;
 }
 
+/* мелкий текст над заголовком */
 .eyebrow {
     text-transform: uppercase;
     font-size: 12px;
@@ -153,6 +162,7 @@
     text-align: left;
 }
 
+/* заголовки простых страниц */
 .page-header {
     padding: 60px 0;
     margin-bottom: 40px;
@@ -165,7 +175,160 @@
     align-items: center;
 }
 
+/* сетка конструктора букетов */
+.constructor-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
 
+/* левая колонка с выбором цветов и бумаги */
+.options {
+    flex: 2;
+    min-width: 300px;
+}
 
+/* правая колонка с рисунком букета и ценой */
+.preview-area {
+    flex: 1;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+/* область кнопок с отдельными цветами */
+.flowers-selection {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
 
+/* карточка для клика по цветку */
+.flower-card {
+    cursor: pointer;
+    background: white;
+    border: 1px solid #eaeaea;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    width: 110px;
+    transition: 0.2s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.flower-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.flower-card img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.flower-card p {
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: #4a4a4a;
+}
+
+.flower-card b {
+    color: #8fbc8f;
+}
+
+.btn-cancel {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-cancel:hover {
+    background: #ff5252;
+}
+
+/* выпадающий список для выбора упаковки */
+.packaging-select {
+    width: 100%;
+    max-width: 360px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* контейнер сцены для рисования букета */
+.bouquet-preview {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    height: 400px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/* слой куда js добавляет картинки цветов */
+#flowers-layer {
+    position: absolute;
+    bottom: 120px;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    z-index: 2;
+}
+
+/* картинка обертки поверх цветов */
+#wrapper-layer {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    z-index: 3;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+/* базовые стили для цветов генерируемых скриптом */
+.bouquet-item {
+    position: absolute;
+    height: auto;
+    transition: width 0.3s ease, transform 0.3s ease-out;
+}
+
+/* блок с выводом итоговой суммы */
+.summary {
+    width: 100%;
+    max-width: 350px;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.summary h3 {
+    margin-top: 0;
+    color: #4a4a4a;
+}
+
+#total-price {
+    color: #8fbc8f;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* растягиваем кнопку покупки на всю ширину карточки итога */
+.summary .btn-buy {
+    width: 100%;
+    padding: 15px;
+}
