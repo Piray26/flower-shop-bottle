@@ -49,16 +49,6 @@ def constructor():
 def contact():
     return template('contact', success=False, year=datetime.now().year)
 
-@route('/contact', method='POST')
-def contact_post():
-    name = request.forms.get('name')
-    email = request.forms.get('email')
-    message = request.forms.get('message')
-
-    print(name, email, message)
-
-    return template('contact', success=True)
-
 @route('/about')
 @view('about')
 def about():

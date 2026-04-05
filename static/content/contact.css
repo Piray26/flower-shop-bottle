@@ -171,3 +171,7 @@
 .contact-card {
     animation: fadeInUp 0.4s ease;
 }
+
+textarea {
+    resize: none;
+}
