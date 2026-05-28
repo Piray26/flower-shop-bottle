@@ -21,6 +21,9 @@
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
     <WebBrowserPort>
     </WebBrowserPort>
+    <TestFramework>unittest</TestFramework>
+    <UnitTestPattern>test*.py</UnitTestPattern>
+    <UnitTestRootDirectory>.</UnitTestRootDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,9 +38,16 @@
     <Compile Include="contact_handler.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="orders.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="routes.py" />
+    <Compile Include="tests\test_orders.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="tests\" />
     <Folder Include="static\" />
     <Folder Include="static\content\" />
     <Folder Include="static\fonts\" />
@@ -57,6 +67,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="static\content\contact.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="static\content\orders.css">
       <SubType>Code</SubType>
     </Content>
     <Content Include="static\content\site.css" />
@@ -105,6 +118,9 @@
     </Content>
     <Content Include="views\index.tpl" />
     <Content Include="views\layout.tpl" />
+    <Content Include="views\orders.tpl">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
