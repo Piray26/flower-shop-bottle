@@ -21,6 +21,8 @@
                     <li><a href="/constructor">Конструктор</a></li>
                     <li><a href="/about">О нас</a></li>
                     <li><a href="/contact">Контакты</a></li>
+                    <li><a href="/orders">Оформленные заказы</a></li>
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/cart">🛒 Корзина</a></li>
