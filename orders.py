@@ -4,25 +4,40 @@ import os
 import re
 from datetime import datetime
 
-# Убедитесь, что путь правильный
 ORDERS_FILE = 'data/orders.json'
+
 
 def load_orders():
     if not os.path.exists(ORDERS_FILE):
         return []
-    # Явно указываем UTF-8
+
     with open(ORDERS_FILE, 'r', encoding='utf-8') as file:
         return json.load(file)
 
+
 def save_orders(orders):
     os.makedirs(os.path.dirname(ORDERS_FILE), exist_ok=True)
-    # Явно указываем UTF-8 и ensure_ascii=False
+
     with open(ORDERS_FILE, 'w', encoding='utf-8') as file:
         json.dump(orders, file, ensure_ascii=False, indent=4)
 
+
+def validate_order_number(number):
+    return bool(re.fullmatch(r'\d{6}', number))
+
+
 def validate_phone(phone):
-    pattern = r'^\+7\(\d{3}\)-\d{3}-\d{2}-\d{2}$'
-    return bool(re.match(pattern, phone))
+
+    pattern = (
+        r'^('
+        r'(8|7)\d{10}'
+        r'|'
+        r'\+7\(\d{3}\)-\d{3}-\d{2}-\d{2}'
+        r')$'
+    )
+
+    return bool(re.fullmatch(pattern, phone))
+
 
 def validate_date(date_text):
     try:
@@ -31,62 +46,107 @@ def validate_date(date_text):
     except ValueError:
         return False
 
+def clean_text(text):
+    try:
+        text = text.encode('latin1').decode('utf-8')
+    except:
+        pass
+    return ' '.join(text.split())
+
+
 @route('/orders', method=['GET', 'POST'])
 def orders_page():
+
     errors = {}
+
     form_data = {
         'number': '',
         'description': '',
         'phone': '',
         'date': ''
     }
+
     orders = load_orders()
 
     if request.method == 'POST':
-        # Безопасное получение данных с .strip()
-        form_data['number'] = request.forms.get('number', '').strip()
-        form_data['description'] = request.forms.get('description', '').strip()
-        form_data['phone'] = request.forms.get('phone', '').strip()
-        form_data['date'] = request.forms.get('date', '').strip()
 
-        # Проверка на пустые поля
+        form_data['description'] = clean_text(request.forms.get('description', ''))
+        form_data['phone'] = clean_text(request.forms.get('phone', ''))
+        form_data['date'] = clean_text(request.forms.get('date', ''))
+        form_data['number'] = clean_text(request.forms.get('number', ''))
+
+        # Валидация номера заказа
         if not form_data['number']:
             errors['number'] = 'Введите номер заказа'
+
+        elif not validate_order_number(form_data['number']):
+            errors['number'] = 'Номер заказа должен содержать 6 цифр'
+
+        # Проверка уникальности номера
+        elif any(order['number'] == form_data['number'] for order in orders):
+            errors['number'] = 'Заказ с таким номером уже существует'
+
+        # Валидация описания
         if not form_data['description']:
             errors['description'] = 'Введите описание заказа'
         
-        # Проверка телефона
-        if not validate_phone(form_data['phone']):
-            errors['phone'] = 'Телефон должен быть в формате +7(999)-999-99-99'
-        
-        # Проверка даты (формат + не в будущем)
+        elif len(form_data['description']) > 200:
+            errors['description'] = (
+                'Описание не должно превышать 200 символов'
+            )
+
+        elif len(form_data['description']) < 3:
+            errors['description'] = (
+                'Описание слишком короткое'
+            )
+
+        # Валидация телефона
+        if not form_data['phone']:
+            errors['phone'] = 'Введите номер телефона'
+
+        elif not validate_phone(form_data['phone']):
+            errors['phone'] = (
+                'Введите телефон в формате '
+                '89123456789, 79123456789 '
+                'или +7(999)-222-56-89'
+            )
+
+        # Валидация даты
         if not form_data['date']:
             errors['date'] = 'Введите дату заказа'
+
         elif not validate_date(form_data['date']):
             errors['date'] = 'Дата должна быть в формате ГГГГ-ММ-ДД'
-        else:
-            # Проверка на будущую дату
-            order_date = datetime.strptime(form_data['date'], '%Y-%m-%d').date()
-            if order_date > datetime.now().date():
-                errors['date'] = 'Дата заказа не может быть в будущем'
-        
-        # Проверка на дубликат номера
-        if not errors.get('number') and form_data['number']:
-            if any(order['number'] == form_data['number'] for order in orders):
-                errors['number'] = 'Заказ с таким номером уже существует'
 
+        else:
+            order_date = datetime.strptime(
+                form_data['date'],
+                '%Y-%m-%d'
+            ).date()
+
+            if order_date.year < 2024:
+                errors['date'] = 'Дата заказа слишком старая'
+
+            elif order_date > datetime.now().date():
+                errors['date'] = 'Дата заказа не может быть в будущем'
+
+        # Если ошибок нет
         if not errors:
+
             new_order = {
                 'number': form_data['number'],
                 'description': form_data['description'],
                 'phone': form_data['phone'],
                 'date': form_data['date']
             }
-            orders.insert(0, new_order)
-            save_orders(orders)
-            return redirect('/orders')
 
-    # Передаём year в шаблон
+            # Новый заказ сверху
+            orders.insert(0, new_order)
+
+            save_orders(orders)
+
+            redirect('/orders')
+
     return template(
         'orders',
         orders=orders,

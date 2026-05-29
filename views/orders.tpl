@@ -11,7 +11,7 @@
     <div class="orders-grid">
         <div class="orders-form">
             <h3>📝 Новый заказ</h3>
-            <form method="post" class="order-form">
+            <form method="post" accept-charset="UTF-8" class="order-form">
                 <div class="form-group">
                     <label for="number">Номер заказа</label>
                     <input type="text" id="number" name="number" placeholder="Например, 100500" value="{{form_data.get('number', '')}}">
