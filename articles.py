@@ -11,7 +11,7 @@ def load_articles():
     if not os.path.exists(ARTICLES_FILE):
         return []
 
-    with open(ARTICLES_FILE, 'r', encoding='utf-8') as file:
+    with open(ARTICLES_FILE, 'r', encoding='utf-8-sig') as file:
         return json.load(file)
 
 
