@@ -35,6 +35,10 @@ def validate_author(author):
 
 
 def clean_text(text):
+    try:
+        text = text.encode('latin1').decode('utf-8')
+    except Exception:
+        pass
     return ' '.join((text or '').split())
 
 
