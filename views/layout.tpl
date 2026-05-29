@@ -22,7 +22,7 @@
                     <li><a href="/about">О нас</a></li>
                     <li><a href="/contact">Контакты</a></li>
                     <li><a href="/orders">Оформленные заказы</a></li>
-
+                    <li><a href="/articles">Полезные статьи</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/cart">🛒 Корзина</a></li>
@@ -32,10 +32,10 @@
     </header>
 
     <div class="container body-content">
-        {{!base}} 
+        {{!base}}
         <hr />
         <footer>
-            <p>&copy; {{ year }} - Цветочная Мастерская. Создано в рамках Лабораторной работы.</p>
+            <p>&copy; {{ year }} - Цветочная мастерская. Создано в рамках лабораторной работы.</p>
         </footer>
     </div>
 
