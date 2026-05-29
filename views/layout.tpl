@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -13,19 +13,20 @@
     <header class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="/" class="navbar-brand">🌸 FlowerMaster</a>
+                <a href="/" class="navbar-brand">рџЊё FlowerMaster</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/">Каталог</a></li>
-                    <li><a href="/constructor">Конструктор</a></li>
-                    <li><a href="/about">О нас</a></li>
-                    <li><a href="/contact">Контакты</a></li>
-                    <li><a href="/orders">Оформленные заказы</a></li>
+                    <li><a href="/">РљР°С‚Р°Р»РѕРі</a></li>
+                    <li><a href="/constructor">РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ</a></li>
+                    <li><a href="/about">Рћ РЅР°СЃ</a></li>
+                    <li><a href="/contact">РљРѕРЅС‚Р°РєС‚С‹</a></li>
+                    <li><a href="/orders">РћС„РѕСЂРјР»РµРЅРЅС‹Рµ Р·Р°РєР°Р·С‹</a></li>
+                    <li><a href="/articles">Полезные статьи</a></li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/cart">🛒 Корзина</a></li>
+                    <li><a href="/cart">рџ›’ РљРѕСЂР·РёРЅР°</a></li>
                 </ul>
             </div>
         </div>
@@ -35,7 +36,7 @@
         {{!base}} 
         <hr />
         <footer>
-            <p>&copy; {{ year }} - Цветочная Мастерская. Создано в рамках Лабораторной работы.</p>
+            <p>&copy; {{ year }} - Р¦РІРµС‚РѕС‡РЅР°СЏ РњР°СЃС‚РµСЂСЃРєР°СЏ. РЎРѕР·РґР°РЅРѕ РІ СЂР°РјРєР°С… Р›Р°Р±РѕСЂР°С‚РѕСЂРЅРѕР№ СЂР°Р±РѕС‚С‹.</p>
         </footer>
     </div>
 
