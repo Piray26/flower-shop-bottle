@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -23,7 +23,6 @@
                     <li><a href="/contact">Контакты</a></li>
                     <li><a href="/orders">Оформленные заказы</a></li>
                     <li><a href="/articles">Полезные статьи</a></li>
-
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/cart">🛒 Корзина</a></li>
@@ -33,7 +32,7 @@
     </header>
 
     <div class="container body-content">
-        {{!base}} 
+        {{!base}}
         <hr />
         <footer>
             <p>&copy; {{ year }} - Цветочная мастерская. Создано в рамках лабораторной работы.</p>

@@ -1,4 +1,4 @@
-﻿% rebase('layout.tpl', title='Полезные статьи', year=year)
+% rebase('layout.tpl', title='Полезные статьи', year=year)
 <link rel="stylesheet" href="/static/content/articles.css">
 
 <div class="articles-page">
