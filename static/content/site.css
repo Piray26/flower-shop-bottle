@@ -7,6 +7,10 @@ body {
     overflow-x: hidden;
 }
 
+.body-content {
+    padding-top: 90px;
+}
+
 /* полупрозрачный фоновый паттерн с лепестками */
     body::before {
         content: "";
