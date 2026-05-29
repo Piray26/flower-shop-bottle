@@ -44,12 +44,78 @@
         </div>
 
         <div class="summary product-card">
+
             <h3>Итого к оплате:</h3>
+
             <h2 id="total-price">0 ₽</h2>
-            
-            <button class="btn" onclick="addToCart()" style="width: 100%;">В корзину</button>
+
+            <form action="/add-custom-bouquet"
+                  method="post"
+                  id="constructor-form">
+
+                <input type="hidden"
+                       name="flowers"
+                       id="flowers-input">
+
+                <input type="hidden"
+                       name="price"
+                       id="price-input">
+
+                <button type="submit"
+                        class="btn"
+                        style="width: 100%;">
+
+                    В корзину
+
+                </button>
+
+            </form>
+
         </div>
-    </div>
+
 </div>
 
 <script src="/static/scripts/constructor.js"></script>
+
+<script>
+
+document
+    .getElementById('constructor-form')
+    .addEventListener('submit', function () {
+
+        const flowers = [];
+
+        document
+            .querySelectorAll('#flowers-layer img')
+            .forEach(img => {
+
+                const src = img.src;
+
+                if (src.includes('rose')) {
+
+                    flowers.push('Роза');
+
+                }
+
+                else if (src.includes('tulip')) {
+
+                    flowers.push('Тюльпан');
+
+                }
+
+                else if (src.includes('peony')) {
+
+                    flowers.push('Пион');
+                }
+            });
+
+        document.getElementById('flowers-input').value =
+            flowers.join(', ');
+
+        document.getElementById('price-input').value =
+            document.getElementById('total-price')
+                .innerText
+                .replace(' ₽', '');
+    });
+
+</script>

@@ -4,71 +4,177 @@
 
 </head>
 <body>
+
 <div class="body">
 
     <div class="cart-header">
         <h1>Ваша корзина</h1>
-        <p>Проверьте выбранные букеты перед оформлением заказа</p>
+
+        <p>
+            Проверьте выбранные букеты перед оформлением заказа
+        </p>
+
         <div class="cart-line"></div>
     </div>
 
     <div class="cart-grid">
+
+        <!-- ТОВАРЫ -->
         <div class="cart-items">
-            <div class="cart-item">
-                <div class="cart-item-image">
-                    <img src="/static/images/pink_roses.png" alt="Розовый букет">
-                </div>
 
-                <div class="cart-info">
-                    <h3>Розовый букет</h3>
-                    <p>Нежная композиция из роз</p>
-                    <div class="cart-actions">
-                        <button class="qty-btn" aria-label="Уменьшить">−</button>
-                        <span class="qty">1</span>
-                        <button class="qty-btn" aria-label="Увеличить">+</button>
+            % if items:
+
+                % for item in items:
+
+                <div class="cart-item">
+
+                    <!-- КАРТИНКА -->
+                    <div class="cart-item-image">
+
+                        % if item.get('image'):
+
+                            <img src="/static/images/{{ item['image'] }}"
+                                 alt="{{ item['name'] }}">
+
+                        % else:
+
+                            <div class="custom-bouquet-placeholder">
+
+                                Авторский<br>букет
+
+                            </div>
+
+                        % end
+
                     </div>
-                </div>
-                <div class="cart-price">
-                    <strong>2 500 ₽</strong>
-                </div>
-            </div>
 
-            <div class="cart-item">
-                <div class="cart-item-image">
-                    <img src="/static/images/white_tulips.png" alt="Белые тюльпаны">
-                </div>
-                <div class="cart-info">
-                    <h3>Белые тюльпаны</h3>
-                    <p>Лёгкость и свежесть</p>
 
-                    <div class="cart-actions">
-                        <button class="qty-btn" aria-label="Уменьшить">−</button>
-                        <span class="qty">2</span>
-                        <button class="qty-btn" aria-label="Увеличить">+</button>
+                    <!-- ИНФОРМАЦИЯ -->
+                    <div class="cart-info">
+
+                        <p>
+                            {{ item.get('description', '') }}
+                        </p>
+
+                        <div class="cart-actions">
+
+                            <!-- МИНУС -->
+                            <a class="qty-btn"
+                               href="/decrease/{{ item['id'] }}">
+                                −
+                            </a>
+
+                            <!-- КОЛИЧЕСТВО -->
+                            <span class="qty">
+                                {{ item['qty'] }}
+                            </span>
+
+                            <!-- ПЛЮС -->
+                            <a class="qty-btn"
+                               href="/increase/{{ item['id'] }}">
+                                +
+                            </a>
+
+                        </div>
+
                     </div>
+
+                    <!-- ЦЕНА -->
+                    <div class="cart-price">
+
+                        <strong>
+                            {{ item['price'] * item['qty'] }} ₽
+                        </strong>
+
+                    </div>
+
                 </div>
-                <div class="cart-price">
-                    <strong>3 000 ₽</strong>
+
+                % end
+
+            % else:
+
+                <div class="empty-cart">
+
+                    <h3>Корзина пуста</h3>
+
+                    <p>
+                        Добавьте букеты из каталога
+                    </p>
+
                 </div>
-            </div>
+
+            % end
+
         </div>
 
+        <!-- БЛОК ИТОГО -->
         <div class="cart-summary">
+
             <h3>Итого</h3>
+
             <div class="summary-row">
+
                 <span>Товары</span>
-                <span>5 500 ₽</span>
+
+                <span>{{ total }} ₽</span>
+
             </div>
+
             <div class="summary-row">
+
                 <span>Доставка</span>
-                <span>300 ₽</span>
+
+                <span>
+                    % if total > 0:
+                        300 ₽
+                    % else:
+                        0 ₽
+                    % end
+                </span>
+
             </div>
+
             <div class="summary-total">
-                5 800 ₽
+
+                % if total > 0:
+
+                    {{ total + 300 }} ₽
+
+                % else:
+
+                    0 ₽
+
+                % end
+
             </div>
-            <button class="btn-cart-contact">
-                Оформить заказ <span>→</span>
+
+            % if items:
+
+            <a href="/checkout"
+               class="btn-cart-contact">
+
+                Оформить заказ
+                <span>→</span>
+
+            </a>
+
+            % else:
+
+            <button class="btn-cart-contact disabled"
+                    disabled>
+
+                Корзина пуста
+
             </button>
+
+            % end
+
         </div>
+
     </div>
+
 </div>
+
+</body>
+</html>

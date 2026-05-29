@@ -175,3 +175,26 @@
 textarea {
     resize: none;
 }
+
+.error {
+    color: #d8000c;
+    font-size: 14px;
+    margin-top: 6px;
+    padding-left: 4px;
+}
+
+.success-message {
+    background: #dff2bf;
+    color: #4f8a10;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+

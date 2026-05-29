@@ -3,6 +3,7 @@ import json
 import os
 import re
 from datetime import datetime
+from bottle import request
 
 ORDERS_FILE = 'data/orders.json'
 
@@ -21,9 +22,6 @@ def save_orders(orders):
     with open(ORDERS_FILE, 'w', encoding='utf-8') as file:
         json.dump(orders, file, ensure_ascii=False, indent=4)
 
-
-def validate_order_number(number):
-    return bool(re.fullmatch(r'\d{6}', number))
 
 
 def validate_phone(phone):
@@ -53,6 +51,19 @@ def clean_text(text):
         pass
     return ' '.join(text.split())
 
+def generate_order_number(orders):
+
+    if not orders:
+        return '100001'
+
+    numbers = [
+        int(order['number'])
+        for order in orders
+        if order['number'].isdigit()
+    ]
+
+    return str(max(numbers) + 1)
+
 
 @route('/orders', method=['GET', 'POST'])
 def orders_page():
@@ -73,18 +84,6 @@ def orders_page():
         form_data['description'] = clean_text(request.forms.get('description', ''))
         form_data['phone'] = clean_text(request.forms.get('phone', ''))
         form_data['date'] = clean_text(request.forms.get('date', ''))
-        form_data['number'] = clean_text(request.forms.get('number', ''))
-
-        # Валидация номера заказа
-        if not form_data['number']:
-            errors['number'] = 'Введите номер заказа'
-
-        elif not validate_order_number(form_data['number']):
-            errors['number'] = 'Номер заказа должен содержать 6 цифр'
-
-        # Проверка уникальности номера
-        elif any(order['number'] == form_data['number'] for order in orders):
-            errors['number'] = 'Заказ с таким номером уже существует'
 
         # Валидация описания
         if not form_data['description']:
@@ -133,8 +132,10 @@ def orders_page():
         # Если ошибок нет
         if not errors:
 
+            order_number = generate_order_number(orders)
+
             new_order = {
-                'number': form_data['number'],
+                'number': order_number,
                 'description': form_data['description'],
                 'phone': form_data['phone'],
                 'date': form_data['date']
@@ -147,10 +148,14 @@ def orders_page():
 
             redirect('/orders')
 
+    description = request.query.description or ''
+
     return template(
         'orders',
         orders=orders,
         errors=errors,
-        form_data=form_data,
+        form_data={
+            'description': description
+        },
         year=datetime.now().year
     )

@@ -13,7 +13,9 @@
             <h3>{{ b['name'] }}</h3>
             <p>{{ b['desc'] }}</p>
             <p><strong>{{ b['price'] }} ₽</strong></p>
-            <button class="btn" onclick="alert('Добавлено!')">В корзину</button>
+            <a class="btn" href="/add-to-cart/{{ b['id'] }}">
+                В корзину
+            </a>
         </div>
     </div>
     % end
