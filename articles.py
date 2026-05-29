@@ -35,13 +35,7 @@ def validate_author(author):
 
 
 def clean_text(text):
-    text = text or ''
-    if 'Ð' in text or 'Ñ' in text:
-        try:
-            text = text.encode('latin1').decode('utf-8')
-        except Exception:
-            pass
-    return ' '.join(text.split())
+    return ' '.join((text or '').split())
 
 
 @route('/articles', method=['GET', 'POST'])
@@ -58,10 +52,10 @@ def articles_page():
     articles = load_articles()
 
     if request.method == 'POST':
-        form_data['author'] = clean_text(request.forms.get('author', ''))
-        form_data['title'] = clean_text(request.forms.get('title', ''))
-        form_data['description'] = clean_text(request.forms.get('description', ''))
-        form_data['date'] = clean_text(request.forms.get('date', ''))
+        form_data['author'] = clean_text(request.forms.getunicode('author', ''))
+        form_data['title'] = clean_text(request.forms.getunicode('title', ''))
+        form_data['description'] = clean_text(request.forms.getunicode('description', ''))
+        form_data['date'] = clean_text(request.forms.getunicode('date', ''))
 
         if not form_data['author']:
             errors['author'] = 'Введите автора статьи'

@@ -1,6 +1,8 @@
-﻿import unittest
 import os
 import sys
+import unittest
+
+from bottle import FormsDict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -12,8 +14,10 @@ class TestArticleValidation(unittest.TestCase):
     def test_clean_text_keeps_normal_cyrillic(self):
         self.assertEqual(clean_text('Анна'), 'Анна')
 
-    def test_clean_text_repairs_mojibake(self):
-        self.assertEqual(clean_text('Ð\x90Ð½Ð½Ð°'), 'Анна')
+    def test_forms_getunicode_keeps_cyrillic(self):
+        form = FormsDict()
+        form['author'] = 'Ð\x90Ð½Ð½Ð°'
+        self.assertEqual(form.getunicode('author'), 'Анна')
 
     def test_valid_author_cyrillic(self):
         self.assertTrue(validate_author('Анна_Петрова'))
