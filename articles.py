@@ -22,19 +22,28 @@ def save_articles(articles):
         json.dump(articles, file, ensure_ascii=False, indent=4)
 
 
-def validate_date(date_text):
-    try:
-        datetime.strptime(date_text, '%Y-%m-%d')
-        return True
-    except ValueError:
-        return False
-
-
 def validate_author(author):
     return bool(re.fullmatch(r'[A-Za-zА-Яа-яЁё0-9_\- ]{2,40}', author))
 
 
+def validate_phone(phone):
+    pattern = (
+        r'^('
+        r'(8|7)\d{10}'
+        r'|'
+        r'\+7\(\d{3}\)-\d{3}-\d{2}-\d{2}'
+        r')$'
+    )
+    return bool(re.fullmatch(pattern, phone))
+
+
 def clean_text(text):
+    text = text or ''
+    if 'Ð' in text or 'Ñ' in text:
+        try:
+            text = text.encode('latin1').decode('utf-8')
+        except UnicodeError:
+            pass
     return ' '.join((text or '').split())
 
 
@@ -46,16 +55,20 @@ def articles_page():
         'author': '',
         'title': '',
         'description': '',
-        'date': ''
+        'phone': ''
     }
 
     articles = load_articles()
+    articles.sort(
+        key=lambda item: item.get('created_at') or item.get('date', ''),
+        reverse=True
+    )
 
     if request.method == 'POST':
         form_data['author'] = clean_text(request.forms.getunicode('author', ''))
         form_data['title'] = clean_text(request.forms.getunicode('title', ''))
         form_data['description'] = clean_text(request.forms.getunicode('description', ''))
-        form_data['date'] = clean_text(request.forms.getunicode('date', ''))
+        form_data['phone'] = clean_text(request.forms.getunicode('phone', ''))
 
         if not form_data['author']:
             errors['author'] = 'Введите автора статьи'
@@ -76,28 +89,28 @@ def articles_page():
         elif len(form_data['description']) > 1000:
             errors['description'] = 'Текст статьи не должен превышать 1000 символов'
 
-        if not form_data['date']:
-            errors['date'] = 'Введите дату публикации'
-        elif not validate_date(form_data['date']):
-            errors['date'] = 'Дата должна быть в формате ГГГГ-ММ-ДД'
-        else:
-            article_date = datetime.strptime(form_data['date'], '%Y-%m-%d').date()
-
-            if article_date.year < 2024:
-                errors['date'] = 'Дата публикации слишком старая'
-            elif article_date > datetime.now().date():
-                errors['date'] = 'Дата публикации не может быть в будущем'
+        if not form_data['phone']:
+            errors['phone'] = 'Введите телефон автора'
+        elif not validate_phone(form_data['phone']):
+            errors['phone'] = (
+                'Введите телефон в формате 89123456789, 79123456789 '
+                'или +7(999)-222-56-89'
+            )
 
         if not errors:
             new_article = {
                 'author': form_data['author'],
                 'title': form_data['title'],
                 'description': form_data['description'],
-                'date': form_data['date']
+                'phone': form_data['phone'],
+                'created_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             }
 
             articles.insert(0, new_article)
-            articles.sort(key=lambda item: item.get('date', ''), reverse=True)
+            articles.sort(
+                key=lambda item: item.get('created_at') or item.get('date', ''),
+                reverse=True
+            )
             save_articles(articles)
             redirect('/articles')
 

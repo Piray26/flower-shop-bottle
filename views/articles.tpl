@@ -37,10 +37,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="date">Дата публикации</label>
-                    <input type="date" id="date" name="date" value="{{form_data.get('date', '')}}">
-                    % if errors.get('date'):
-                    <span class="error">{{errors['date']}}</span>
+                    <label for="phone">Телефон</label>
+                    <input type="text" id="phone" name="phone" placeholder="+7(999)-222-56-89" value="{{form_data.get('phone', '')}}">
+                    % if errors.get('phone'):
+                    <span class="error">{{errors['phone']}}</span>
                     % end
                 </div>
 
@@ -59,7 +59,7 @@
                 <div class="article-card">
                     <div class="article-header">
                         <span class="article-title">{{article['title']}}</span>
-                        <span class="article-date">{{article['date']}}</span>
+                        <span class="article-phone">{{article.get('phone', 'Телефон не указан')}}</span>
                     </div>
                     <div class="article-body">
                         <p><strong>Автор:</strong> <span>{{article['author']}}</span></p>
