@@ -89,9 +89,7 @@ def articles_page():
         elif len(form_data['description']) > 1000:
             errors['description'] = 'Текст статьи не должен превышать 1000 символов'
 
-        if not form_data['phone']:
-            errors['phone'] = 'Введите телефон автора'
-        elif not validate_phone(form_data['phone']):
+        if form_data['phone'] and not validate_phone(form_data['phone']):
             errors['phone'] = (
                 'Введите телефон в формате 89123456789, 79123456789 '
                 'или +7(999)-222-56-89'

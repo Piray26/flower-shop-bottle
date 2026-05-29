@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="phone">Телефон</label>
+                    <label for="phone">Телефон (необязательно)</label>
                     <input type="text" id="phone" name="phone" placeholder="+7(999)-222-56-89" value="{{form_data.get('phone', '')}}">
                     % if errors.get('phone'):
                     <span class="error">{{errors['phone']}}</span>
