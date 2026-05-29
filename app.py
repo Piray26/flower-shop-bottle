@@ -8,6 +8,7 @@ import sys
 import contact_handler
 import routes
 import orders
+import articles
 
 if '--debug' in sys.argv[1:] or 'SERVER_DEBUG' in os.environ:
     # Debug mode will enable more verbose output in the console window.
